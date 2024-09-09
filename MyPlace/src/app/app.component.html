@@ -1,0 +1,23 @@
+<div class="container">
+  <div style="text-align: center">
+    <h1>{{ title }}</h1>
+
+    <input type="color" class="zindex" [(ngModel)]="selectedColor" />
+
+    <div #gridContainer class="grid-container"
+        (wheel)="onWheel($event)"
+        (mousedown)="onMouseDown($event)"
+        (mousemove)="onMouseMove($event)"
+        (mouseup)="onMouseUp()"
+        [style.transform]="'scale(' + scale + ') translate(' + translateX + 'px, ' + translateY + 'px)'">
+      <div *ngFor="let row of grid; let rowIndex = index" class="row">
+        <div
+          *ngFor="let pixel of row; let colIndex = index"
+          class="pixel"
+          [ngStyle]="{'background-color': pixel.color}"
+          (click)="changePixelColor(rowIndex, colIndex)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
